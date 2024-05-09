@@ -1,0 +1,70 @@
+'***************************************************************************************
+' Least-Squares Fitting for Modern Physics Lab.
+' This version permits error bars on both the X and the Y data point values.
+' The routine iterates some number of times to find the best slope for converting
+' the X error to an effective Y error.
+'
+' Original author "YKL" unknown
+' Revised R.A.Schumacher, Carnegie Mellon University, 3-2002
+' Further revisions in 2-2003
+'
+Sub xylsf()
+    Dim i, N, col, row As Integer
+    Dim x(1100), y(1100), yerr(1100), xerr(1100) As Double
+    Dim a, b, aerr, berr, ChiSqr As Double
+    Dim S, Sx, Sy, Sxx, Sxy, D As Double
+    row = 10: col = 9
+    N = Cells(7, 2).Value
+'    Cells(11, col - 1).Value = "a ="
+'    Cells(12, col - 1).Value = "b ="
+'    Cells(13, col - 1).Value = "a err="
+'    Cells(14, col - 1).Value = "b err="
+'    Cells(15, col - 1).Value = "ChiSqr/d.o.f."
+    For i = 1 To N
+        x(i) = Cells(10 + i, 1)
+        y(i) = Cells(10 + i, 3)
+        xerr(i) = Cells(10 + i, 2)
+        yerr(i) = Cells(10 + i, 4)
+    Next i
+    b = 0
+    For iter = 1 To 5  'Iterate 5 times for find best slope...
+        S = 0: Sx = 0: Sy = 0: Sxx = 0: Sxy = 0
+        For i = 1 To N
+            S = S + 1 / (yerr(i) ^ 2 + (b * xerr(i)) ^ 2)
+            Sx = Sx + x(i) / (yerr(i) ^ 2 + (b * xerr(i)) ^ 2)
+            Sy = Sy + y(i) / (yerr(i) ^ 2 + (b * xerr(i)) ^ 2)
+            Sxx = Sxx + x(i) * x(i) / (yerr(i) ^ 2 + (b * xerr(i)) ^ 2)
+            Sxy = Sxy + x(i) * y(i) / (yerr(i) ^ 2 + (b * xerr(i)) ^ 2)
+        Next i
+        D = S * Sxx - Sx ^ 2
+        b = (S * Sxy - Sx * Sy) / D
+    Next iter
+'    Cells(row + 6, col) = S
+'    Cells(row + 7, col) = Sx
+'    Cells(row + 8, col) = Sy
+'    Cells(row + 9, col) = Sxx
+'    Cells(row + 10, col) = Sxy
+'    Cells(row + 11, col) = D
+'    Cells(row + 12, col) = N
+    a = (Sxx * Sy - Sx * Sxy) / D
+    b = (S * Sxy - Sx * Sy) / D
+    aerr = Sqr(Sxx / D)
+    berr = Sqr(S / D)
+    ChiSqr = 0
+    For i = 1 To N
+        ChiSqr = ChiSqr + (y(i) - a - b * x(i)) ^ 2 / ((yerr(i)) ^ 2 + (b * xerr(i)) ^ 2)
+    Next i
+    Cells(row + 1, col) = a
+    Cells(row + 2, col) = b
+    Cells(row + 3, col) = aerr
+    Cells(row + 4, col) = berr
+    Cells(row + 5, col) = ChiSqr / (N - 2)
+    Cells(3, 12) = Now()
+    Cells(4, 12) = Time()
+    For i = 1 To N
+        yfit = a + b * x(i)
+        Cells(10 + i, 6) = yfit
+        Cells(10 + i, 5) = (y(i) - yfit) / yerr(i)
+    Next i
+End Sub
+
