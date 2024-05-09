@@ -6,7 +6,7 @@
 ' Original author: Harshitha Veeravalli (CMU Computational Physics 2026)
 '
 */
-// another change to see if git updates
+// another change to see if git updates.
 async function ylsf(): Promise<void> {
   let sheet: Excel.Worksheet = await Excel.run(async (context: Excel.RequestContext) => {
     let sheet = context.workbook.worksheets.getActiveWorksheet();

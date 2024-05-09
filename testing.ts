@@ -4,3 +4,4 @@ console.log("new numbers is : " + numbers );
 length = numbers.push(20); 
 console.log("new numbers is : " + numbers );
 var temp = new Array(1,4,10);
+// temp
