@@ -1,24 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Combined Form and Show Image</title>
+    <title>Form</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <style>
-        /* Add your CSS styles here */
-        .container {
-            text-align: center;
-            margin-top: 50px;
-        }
-        .image-container {
-            display: none;
-            margin-top: 20px;
-        }
-        img {
-            width: 200px;
-            height: 200px;
-        }
         .hidden {
             display: none;
         }
@@ -55,16 +40,7 @@
     </ul>
     {% endif %}
 
-    <div class="container">
-        <button onclick="showImage('image1')">Show Image 1</button>
-        <button onclick="showImage('image2')">Show Image 2</button>
-        <div id="image1" class="image-container">
-            <img src="../../images/image1.jpeg" alt="Image 1">
-        </div>
-        <div id="image2" class="image-container">
-            <img src="../../images/image2.jpeg" alt="Image 2">
-        </div>
-    </div>
+    <!-- Image to be displayed after form submission -->
 
     <script>
         var rowNum = 1;
@@ -73,15 +49,6 @@
             rowNum++;
             var newRow = '<tr><td><input type="number" name="xdata_' + rowNum + '"></td><td><input type="number" name="ydata_' + rowNum + '"></td><td><input type="number" name="xerr_' + rowNum + '"></td><td><input type="number" name="yerr_' + rowNum + '"></td></tr>';
             $('#form_table').append(newRow);
-        }
-
-        // JavaScript function to show the image
-        function showImage(id) {
-            var images = document.querySelectorAll('.image-container');
-            images.forEach(function(image) {
-                image.style.display = 'none';
-            });
-            document.getElementById(id).style.display = 'block';
         }
     </script>
 </body>
