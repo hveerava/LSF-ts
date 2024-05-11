@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Form</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+    <form method="POST" action="/">
+        <table id="form_table">
+            <tr>
+                <th>X Data</th>
+                <th>Y Data</th>
+                <th>X Error</th>
+                <th>Y Error</th>
+            </tr>
+            <tr>
+                <td><input type="number" name="xdata_1"></td>
+                <td><input type="number" name="ydata_1"></td>
+                <td><input type="number" name="xerr_1"></td>
+                <td><input type="number" name="yerr_1"></td>
+            </tr>
+        </table>
+        <button type="button" onclick="addRow()">Add Row</button>
+        <br><br>
+        <input type="submit" value="Submit">
+    </form>
+
+    {% if form_data %}
+    <h1>Form Data</h1>
+    <ul>
+        {% for key, value in form_data.items() %}
+            <li>{{ key }}: {{ value }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+
+    <script>
+        var rowNum = 1;
+
+        function addRow() {
+            rowNum++;
+            var newRow = '<tr><td><input type="number" name="xdata_' + rowNum + '"></td><td><input type="number" name="ydata_' + rowNum + '"></td><td><input type="number" name="xerr_' + rowNum + '"></td><td><input type="number" name="yerr_' + rowNum + '"></td></tr>';
+            $('#form_table').append(newRow);
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Form Result</title>
+</head>
+<body>
+    <h1>Form Data</h1>
+    <h2>X Data</h2>
+    <ul>
+        {% for name in xdata %}
+            <li>{{ name }}</li>
+        {% endfor %}
+    </ul>
+    <h2>Y Data</h2>
+    <ul>
+        {% for email in ydata %}
+            <li>{{ email }}</li>
+        {% endfor %}
+    </ul>
+    <h2>X Err</h2>
+    <ul>
+        {% for phone in xerr %}
+            <li>{{ phone }}</li>
+        {% endfor %}
+    </ul>
+    <h2>Y Err</h2>
+    <ul>
+        {% for address in yerr %}
+            <li>{{ address }}</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

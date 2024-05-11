@@ -37,13 +37,13 @@ def delete_row():
 
 @app.route('/run_func1', methods=['POST'])
 def run_func1():
-    try:
+    #try:
         print(request.form)  # Print form data
         # Get number of rows
         rows = int(request.form.get('rows', 1))
 
         # Initialize empty lists to store data
-        x_data = []
+        '''x_data = []
         y_data = []
         x_error = []
         y_error = []
@@ -64,17 +64,17 @@ def run_func1():
             y_error.append(float(y_error_str))
 
         # Run func1
-        func1(x_data, y_data, x_error, y_error)
+        #func1(x_data, y_data, x_error, y_error)
 
         # Print arrays
         print("X Data:", x_data)
         print("Y Data:", y_data)
         print("X Error:", x_error)
-        print("Y Error:", y_error)
+        print("Y Error:", y_error)'''
 
         return render_template('index.html', rows=rows)
-    except Exception as e:
-        return str(e)
+'''except Exception as e:
+        return str(e)'''
 
 
 @app.route('/run_func2', methods=['POST'])
@@ -105,7 +105,7 @@ def run_func2():
             y_error.append(float(y_error_str))
 
         # Run func2
-        func2(x_data, y_data, x_error, y_error)
+        #func2(x_data, y_data, x_error, y_error)
 
         # Print arrays
         print("X Data:", x_data)
