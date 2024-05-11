@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Show Image on Button Click</title>
+    <style>
+        /* Add your CSS styles here */
+        .container {
+            text-align: center;
+            margin-top: 50px;
+        }
+        .image-container {
+            display: none;
+            margin-top: 20px;
+        }
+        img {
+            width: 200px;
+            height: 200px;
+        }
+        table {
+            margin: 20px auto;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <table>
+            <thead>
+                <tr>
+                    <th>x data</th>
+                    <th>y data</th>
+                    <th>x error</th>
+                    <th>y error</th>
+                </tr>
+            </thead>
+            <tbody id="dataTable">
+                <!-- Table rows will be added dynamically -->
+            </tbody>
+        </table>
+        <button onclick="addRow()">Add Row</button>
+        <br>
+        <button onclick="showImage('image1')">Show Image 1</button>
+        <button onclick="showImage('image2')">Show Image 2</button>
+        <button onclick="generatePlot('ylsf')">Generate Plot 1</button>
+        <button onclick="generatePlot('xylsf')">Generate Plot 2</button>
+        <div id="image1" class="image-container">
+            <!-- Placeholder for Image 1 -->
+        </div>
+        <div id="image2" class="image-container">
+            <!-- Placeholder for Image 2 -->
+        </div>
+    </div>
+
+    <script>
+        // JavaScript function to show the image
+        function showImage(id) {
+            var images = document.querySelectorAll('.image-container');
+            images.forEach(function(image) {
+                image.style.display = 'none';
+            });
+            document.getElementById(id).style.display = 'block';
+        }
+
+        // JavaScript function to add a row to the table
+        function addRow() {
+            var table = document.getElementById('dataTable');
+            var newRow = table.insertRow(table.rows.length);
+            for (var i = 0; i < 4; i++) {
+                var cell = newRow.insertCell(i);
+                cell.innerHTML = "<input type='text'>";
+            }
+        }
+
+        // JavaScript function to generate plot
+        function generatePlot(func) {
+            var table = document.getElementById('dataTable');
+            var x = [];
+            var y = [];
+            var x_err = [];
+            var y_err = [];
+            for (var i = 0; i < table.rows.length; i++) {
+                var row = table.rows[i];
+                x.push(parseFloat(row.cells[0].querySelector('input').value));
+                y.push(parseFloat(row.cells[1].querySelector('input').value));
+                x_err.push(parseFloat(row.cells[2].querySelector('input').value));
+                y_err.push(parseFloat(row.cells[3].querySelector('input').value));
+            }
+            if (func === 'ylsf') {
+                ylsf(x, y, y_err);
+            } else if (func === 'xylsf') {
+                xylsf(x, y, x_err, y_err);
+            }
+        }
+
+        // Function ylsf
+        function ylsf(x, y, y_err) {
+            // Your ylsf function code here
+            alert("Function ylsf called");
+        }
+
+        // Function xylsf
+        function xylsf(x, y, x_err, y_err) {
+            // Your xylsf function code here
+            alert("Function xylsf called");
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Show Image on Button Click</title>
+    <style>
+        /* Add your CSS styles here */
+        .container {
+            text-align: center;
+            margin-top: 50px;
+        }
+        .image-container {
+            display: none;
+            margin-top: 20px;
+        }
+        img {
+            width: 200px;
+            height: 200px;
+        }
+        table {
+            margin: 20px auto;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <table>
+            <thead>
+                <tr>
+                    <th>x data</th>
+                    <th>y data</th>
+                    <th>x error</th>
+                    <th>y error</th>
+                </tr>
+            </thead>
+            <tbody id="dataTable">
+                <!-- Table rows will be added dynamically -->
+            </tbody>
+        </table>
+        <button onclick="addRow()">Add Row</button>
+        <br>
+        <button onclick="showImage('image1')">Show Image 1</button>
+        <button onclick="showImage('image2')">Show Image 2</button>
+        <div id="image1" class="image-container">
+            <img src="../images/image1.jpeg" alt="Image 1">
+        </div>
+        <div id="image2" class="image-container">
+            <img src="../images/image2.jpeg" alt="Image 2">
+        </div>
+    </div>
+
+    <script>
+        // JavaScript function to show the image
+        function showImage(id) {
+            var images = document.querySelectorAll('.image-container');
+            images.forEach(function(image) {
+                image.style.display = 'none';
+            });
+            document.getElementById(id).style.display = 'block';
+        }
+
+        // JavaScript function to add a row to the table
+        function addRow() {
+            var table = document.getElementById('dataTable');
+            var newRow = table.insertRow(table.rows.length);
+            for (var i = 0; i < 4; i++) {
+                var cell = newRow.insertCell(i);
+                cell.innerHTML = "<input type='text'>";
+            }
+        }
+    </script>
+</body>
+</html>

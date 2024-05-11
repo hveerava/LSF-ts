@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flask App</title>
+</head>
+<body>
+    <form action="/add_row" method="POST">
+        <table id="data_table">
+            <tr>
+                <th>X Data</th>
+                <th>Y Data</th>
+                <th>X Error</th>
+                <th>Y Error</th>
+            </tr>
+            {% for row in range(rows|default(1)) %}
+            <tr>
+                <td><input type="text" name="x_data_{{ row }}" value="{{ request.form.get('x_data_' ~ row, '') }}"></td>
+                <td><input type="text" name="y_data_{{ row }}" value="{{ request.form.get('y_data_' ~ row, '') }}"></td>
+                <td><input type="text" name="x_error_{{ row }}" value="{{ request.form.get('x_error_' ~ row, '') }}"></td>
+                <td><input type="text" name="y_error_{{ row }}" value="{{ request.form.get('y_error_' ~ row, '') }}"></td>
+            </tr>
+            {% endfor %}
+        </table>
+        <input type="hidden" name="rows" value="{{ rows }}">
+        <button type="submit">Add Row</button>
+    </form>
+
+    <form action="/delete_row" method="POST">
+        <input type="hidden" name="rows" value="{{ rows }}">
+        <button type="submit">Delete Row</button>
+    </form>
+
+    <form action="/run_func1" method="POST">
+        <button type="submit">Run func1</button>
+    </form>
+
+    <form action="/run_func2" method="POST">
+        <button type="submit">Run func2</button>
+    </form>
+
+    <img src="/static/image1.jpeg" alt="Image 1">
+    <img src="/static/image2.jpeg" alt="Image 2">
+</body>
+</html>

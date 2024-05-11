@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Show Image on Button Click</title>
+    <style>
+        /* Add your CSS styles here */
+        .container {
+            text-align: center;
+            margin-top: 50px;
+        }
+        .image-container {
+            display: none;
+            margin-top: 20px;
+        }
+        img {
+            width: 200px;
+            height: 200px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <button onclick="showImage('image1')">Show Image 1</button>
+        <button onclick="showImage('image2')">Show Image 2</button>
+        <div id="image1" class="image-container">
+            <img src="../images/image1.jpeg" alt="Image 1">
+        </div>
+        <div id="image2" class="image-container">
+            <img src="../images/image2.jpeg" alt="Image 2">
+        </div>
+    </div>
+
+    <script>
+        // JavaScript function to show the image
+        function showImage(id) {
+            var images = document.querySelectorAll('.image-container');
+            images.forEach(function(image) {
+                image.style.display = 'none';
+            });
+            document.getElementById(id).style.display = 'block';
+        }
+    </script>
+</body>
+</html>
