@@ -29,5 +29,30 @@
             <li>{{ address }}</li>
         {% endfor %}
     </ul>
+
+    <!-- Buttons to display images -->
+    <button onclick="displayImage('image1')">Display Image 1</button>
+    <button onclick="displayImage('image2')">Display Image 2</button>
+
+    <!-- Image containers -->
+    <div id="image1" class="hidden">
+        <img src="../../images/image1.jpeg" alt="Image 1">
+    </div>
+    <div id="image2" class="hidden">
+        <img src="../../images/image2.jpeg" alt="Image 2">
+    </div>
+
+    <script>
+        function displayImage(imageId) {
+            // Hide all images
+            var images = document.querySelectorAll('.imagecontainer');
+            images.forEach(function(img) {
+                img.style.display = 'none';
+            });
+
+            // Show the selected image
+            document.getElementById(imageId).style.display = 'block';
+        }
+    </script>
 </body>
 </html>
