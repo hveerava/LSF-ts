@@ -6,7 +6,14 @@
 ' Original author: Harshitha Veeravalli (CMU Computational Physics 2026)
 '
 */
-function ylsf() {
+/*
+Attaching script to button on sheet:
+1. Add button on google sheet using 'Insert>Drawing'
+2. Click the three dots on the button after inserting and click 'Assign Script'
+3. Type the name of the FUNCTION <function name> to attach to the button and 'OK'.
+*/
+
+function ylsf() { // <function name> for Y errors only
     var sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
     var N = sheet.getRange("B7").getValue();
     var row = 10;
