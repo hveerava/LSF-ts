@@ -3,15 +3,21 @@
 <head>
     <title>Form</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <style>
+        .hidden {
+            display: none;
+        }
+    </style>
 </head>
 <body>
-    <form method="POST" action="/">
+    <form id="myForm" method="POST" action="/" enctype="multipart/form-data">
         <table id="form_table">
             <tr>
                 <th>X Data</th>
                 <th>Y Data</th>
                 <th>X Error</th>
                 <th>Y Error</th>
+                <th>Image</th>
             </tr>
             <tr>
                 <td><input type="number" name="xdata_1"></td>
@@ -32,6 +38,9 @@
             <li>{{ key }}: {{ value }}</li>
         {% endfor %}
     </ul>
+    <script>
+        $('#image').removeClass('hidden'); // Show the image after form submission
+    </script>
     {% endif %}
 
     <script>
@@ -43,5 +52,6 @@
             $('#form_table').append(newRow);
         }
     </script>
+    
 </body>
 </html>
